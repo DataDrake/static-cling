@@ -23,7 +23,7 @@ import (
 // Root command for "static-cling"
 var Root = cmd.Root{
 	Name:  "static-cling",
-	Short: "A no non-sense static static site generator",
+	Short: "A no nonsense static static site generator",
 }
 
 func init() {

@@ -1,5 +1,5 @@
 # static-cling
-A easy to use static site generator written in Go 
+A no nonsense static static site generator
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/DataDrake/static-cling)](https://goreportcard.com/report/github.com/DataDrake/static-cling) [![license](https://img.shields.io/github/license/DataDrake/static-cling.svg)]()
 
