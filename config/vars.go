@@ -16,11 +16,18 @@
 
 package config
 
-// Config for rendering content
-type Config struct {
-	Name       string            `yaml:"name"`
-	Content    string            `yaml:"content"`
-	Listings   Listings          `yaml:"templates"`
-	Categories Categories        `yaml:"categories"`
-	Vars       map[string]string `yaml:"vars"`
+// Variables for rendering templates
+type Variables struct {
+	Map   map[string]string            `yaml:"map"`
+	Maps  map[string]map[string]string `yaml:"maps"`
+	Lists map[string][]string          `yaml:"lists"`
+}
+
+// NewVariables creates an empty Variables structure
+func NewVariables() Variables {
+	return Variables{
+		Map:   make(map[string]string),
+		Maps:  make(map[string]map[string]string),
+		Lists: make(map[string][]string),
+	}
 }

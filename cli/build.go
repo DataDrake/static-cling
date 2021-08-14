@@ -17,10 +17,12 @@
 package cli
 
 import (
+	"fmt"
 	"github.com/DataDrake/cli-ng/v2/cmd"
-	"github.com/DataDrake/static-cling/util"
-	"html/template"
-	"path/filepath"
+	"github.com/DataDrake/static-cling/config"
+	"github.com/DataDrake/static-cling/render"
+	"github.com/DataDrake/static-cling/templates"
+	log "github.com/DataDrake/waterlog"
 )
 
 func init() {
@@ -33,27 +35,41 @@ var Build = cmd.Sub{
 	Alias: "up",
 	Short: "Generate the site",
 	Flags: &BuildFlags{
-		SrcDir:    ".",
-		OutputDir: "build",
+		Src:   ".",
+		Build: "build",
 	},
 	Run: BuildRun,
 }
 
 // BuildFlags are flags used by the "build" sub-command
 type BuildFlags struct {
-	SrcDir    string `short:"S" long:"srcdir" desc:"source of project files (default '.')"`
-	OutputDir string `short:"O" long:"outputdir" desc:"name of the output dir, relative to source (default 'build')"`
+	Src   string `short:"S" long:"source" desc:"source of project files (default '.')"`
+	Build string `short:"B" long:"build"  desc:"name of the buid dir, relative to source (default 'build')"`
 }
 
 // BuildRun carries out the "build" sub-command
 func BuildRun(r *cmd.Root, s *cmd.Sub) {
 	// gFlags := r.Flags.(*GlobalFlags)
 	flags := s.Flags.(*BuildFlags)
-	buildDir := filepath.Join(flags.SrcDir, flags.OutputDir)
-	util.CreateDir(buildDir)
-	assetsDir := filepath.Join(flags.SrcDir, "assets")
-	util.CopyDir(assetsDir, buildDir)
-	templateDir := filepath.Join(flags.SrcDir, "templates", "*")
-	templates := template.Must(template.ParseGlob(templateDir))
-	println(templates.DefinedTemplates())
+	log.Infoln("Loading configuration")
+	conf, err := config.Load(config.Path(flags.Src))
+	if err != nil {
+		log.Fatalf("Failed to load configuration: %q\n", err)
+	}
+	fmt.Printf("%#v\n", conf)
+	log.Goodln("Config Loaded.")
+
+	log.Infoln("Loading templates")
+	tmpls, err := templates.Load(flags.Src)
+	if err != nil {
+		log.Fatalf("Failed to load templates: %q\n", err)
+	}
+	fmt.Printf("%#v\n", tmpls)
+	log.Goodln("Templates Loaded.")
+	log.Infoln("Setting up the rendering process")
+	site, err := render.NewSite(&conf, tmpls)
+	if err != nil {
+		log.Fatalf("Failed to set up rendering: %q\n", err)
+	}
+	fmt.Printf("%#v\n", site)
 }

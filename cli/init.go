@@ -18,6 +18,7 @@ package cli
 
 import (
 	"github.com/DataDrake/cli-ng/v2/cmd"
+	"github.com/DataDrake/static-cling/config"
 	"github.com/DataDrake/static-cling/util"
 	log "github.com/DataDrake/waterlog"
 	"os"
@@ -55,8 +56,7 @@ func InitRun(r *cmd.Root, s *cmd.Sub) {
 	}
 	log.Goodln("Done.")
 	util.CreateDir(filepath.Join(flags.DestDir, "assets"))
-	util.CreateDir(filepath.Join(flags.DestDir, "config"))
+	util.CreateDir(filepath.Join(flags.DestDir, config.Dir))
 	util.CreateDir(filepath.Join(flags.DestDir, "content"))
-	util.CreateDir(filepath.Join(flags.DestDir, "content", "blog"))
 	util.CreateDir(filepath.Join(flags.DestDir, "templates"))
 }

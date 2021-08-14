@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>{{.Page.Title}} | {{.Site.Name}} </title>
+        <meta name="viewport" content="width=device-width initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="vendor/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/site.css">        
+    </head>
+    <body>
+        <a id="up" href="#top">
+            <i class="fa fa-chevron-up clr-1" simple-top></i>
+        </a>
+        <header id="top">
+            <a href="/">
+                <i class="fa fa-fw fa-sitemap"></i>
+                <span>{{.Site.Name}}</span>
+            </a>
+            <div class="icons">
+                {{range .Site.Sections}}
+                <a href="/{{toLower .Name}}">
+                    <i class="fa fa-fw fa-{{.Vars.Map.Icon}}"></i>
+                    <span>{{.Name}}</span>
+                </a>
+                {{end}}
+                <a href="https://github.com/DataDrake/static-cling">
+                    <i class="fa fa-fw fa-github"></i>
+                    <span>Github</span>
+                </a>
+            </div>
+        </header>
+        <main>
+            {{.Page.Content}}
+        </main>
+        <footer>
+            <p>
+                Copyright &copy; 2021 &mdash; <a href="mailto:root@datadrake.com">Bryan T. Meyers</a> &nbsp; All Rights Reserved.
+            </p>
+        </footer>
+    </body>
+</html>

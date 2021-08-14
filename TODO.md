@@ -1,15 +1,13 @@
 # TODO
 
- - [ ] Load configuration tree
  - [ ] Load content tree
- - [ ] Load template tree
+ - [ ] Write documentation in docs/ as example project
+ - [ ] Render directory listings
+ - [ ] Render category listings
+ - [ ] Render content files
 
 # BACKLOG
 
- - [ ] Add content support for HTML
- - [ ] Add template support for Go html/template
- - [ ] Write documentation in docs/ as example project
- - [ ] Put static-cling on github
  - [ ] Add content support for Markdown (blackfriday)
  - [ ] Add content support for HAML (DataDrake/haml
  - [ ] Add content support for TimberText (DataDrake/TimberText)
@@ -22,4 +20,9 @@
 # COMPLETED
 
  - [x] Add comments to everything (golint)
+ - [x] Load configuration tree
+ - [x] Load template tree
+ - [x] Add content support for HTML
+ - [x] Add template support for Go html/template
+ - [x] Put static-cling on github
 

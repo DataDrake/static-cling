@@ -14,10 +14,20 @@
 // limitations under the License.
 //
 
-package config
+package templates
 
-// Content configures the rendering process for documents
-type Content struct {
-	Metadata string `yaml:"metadata"`
-	Template string `yaml:"template"`
+import (
+	"strings"
+	"text/template"
+)
+
+var tmplFunctions template.FuncMap
+
+func functions() template.FuncMap {
+	if tmplFunctions == nil {
+		tmplFunctions = template.FuncMap{
+			"toLower": strings.ToLower,
+		}
+	}
+	return tmplFunctions
 }

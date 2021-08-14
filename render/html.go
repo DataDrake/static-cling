@@ -14,11 +14,21 @@
 // limitations under the License.
 //
 
-package config
+package render
 
-// Tree contains all of the configurations read from the config directory
-type Tree struct {
-	Name     string
-	Config   *Config
-	Children []Tree
+import (
+	"github.com/DataDrake/static-cling/content"
+	"os"
+	"path/filepath"
+)
+
+// writeHTML creates a file in the Destination directory and writes the contents as HTML
+func writeHTML(dst *content.Dir, name, content string) error {
+	out, err := os.OpenFile(filepath.Join(dst.Path, name), os.O_RDWR|os.O_TRUNC|os.O_CREATE, 0644)
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+	_, err = out.Write([]byte(content))
+	return err
 }

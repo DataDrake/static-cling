@@ -1,0 +1,13 @@
+<h1>
+    <i class="fa fa-fw fa-{{.Section.Vars.Map.Icon}}"></i>
+    {{.Section.Name}}
+</h1>
+<div class="releases">
+    {{range .Pages.Latest}}
+    <a href="{{.URL}}">
+        <div class="version">{{.Vars.Map.Version}}</div>
+        <div class="type">{{.Vars.Map.Type}}</div>
+        <div class="title">{{.Title}}</div>
+    </a>
+    {{end}}
+</div>

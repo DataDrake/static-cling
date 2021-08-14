@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>static-cling | {{.Config.Name}}</title>
+        <meta name="viewport" content="width=device-width initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="vendor/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/suckless.min.css">        
+    </head>
+    <body>
+        <header class="topbar">
+            <i class="fa fa-fw fa-sitemap">static-cling</i>
+        </header>
+        <main>
+            <h1>
+                <i class="fa fa-fw fa-{{.Config.Icon}}"></i>
+                {{.Config.Name}}
+            </h1>
+            {{.Content}}
+        </main>
+        <hr>
+        <footer>
+            <p>
+                Copyright 2021 <a href="mailto:root@datadrake.com">Bryan T. Meyers</a> All Rights Reserved.
+            </p>
+        </footer>
+    </body>
+</html>

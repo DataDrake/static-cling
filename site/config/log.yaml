@@ -1,0 +1,8 @@
+name: Log
+templates:
+    content: log.html
+    listings:
+        - index.html
+vars:
+    map:
+        Icon: bullhorn

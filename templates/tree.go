@@ -14,16 +14,32 @@
 // limitations under the License.
 //
 
-package data
+package templates
 
 import (
-	"github.com/DataDrake/static-cling/config"
+	log "github.com/DataDrake/waterlog"
+	"path/filepath"
 )
 
-// Template provides all of the data for rendering a document into a template
-type Template struct {
-	Config  config.Content
-	Meta    Meta
-	Content string
-	Data    map[string][]string
+// Tree contains the full tree of Templates for this site
+type Tree struct {
+	Root *Dir
+}
+
+// Load reads the template Tree from disk
+func Load(path string) (t *Tree, err error) {
+	log.Debugln("Loading initial template tree")
+	t = &Tree{}
+	t.Root, err = NewDir(filepath.Join(path, "templates"))
+	return
+}
+
+// Sub retrieves a subdirectory by name
+func (t *Tree) Sub(path string) (dir *Dir, err error) {
+	return t.Root.Sub(path)
+}
+
+// Update rereads the entire Tree
+func (t *Tree) Update(force bool) error {
+	return t.Root.Update(force)
 }

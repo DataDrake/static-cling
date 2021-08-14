@@ -1,0 +1,6 @@
+name: Docs
+templates:
+    content: page.html
+vars:
+    map:
+        Icon: book

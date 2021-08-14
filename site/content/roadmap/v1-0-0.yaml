@@ -1,0 +1,5 @@
+title: Stable
+vars:
+    map:
+        Version: v1.0.0
+        Type: Stable

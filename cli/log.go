@@ -14,16 +14,15 @@
 // limitations under the License.
 //
 
-package config
+package cli
 
-// Categories configures the rendering process for category listings
-type Categories struct {
-	Templates []string            `yaml:"templates"`
-	List      map[string]Category `yaml:"list"`
-}
+import (
+	log "github.com/DataDrake/waterlog"
+	"github.com/DataDrake/waterlog/format"
+	"github.com/DataDrake/waterlog/level"
+)
 
-// Category describes a particular group of content
-type Category struct {
-	Name string            `yaml:"name"`
-	Vars map[string]string `yaml:"vars"`
+func init() {
+	log.SetFormat(format.Min)
+	log.SetLevel(level.Debug)
 }

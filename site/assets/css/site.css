@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    line-height: 1.25rem;
+}
+
+#up {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    color: white;
+    background: black;
+    padding: 1rem;
+    border: 1px solid white;
+    text-decoration: none;
+}
+
+#top {
+    display: flex;
+    color: white;
+    background: black;
+}
+
+#top a {
+    color: white;
+    text-decoration: none;
+}
+
+#top .icons {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+#top .icons a {
+    padding-left: 1rem;
+}
+
+header, main, footer {
+    padding: 1rem;
+    max-width: 65rem;
+}
+
+header, footer {
+    color: white;
+    background: black;
+    margin: 0 auto;
+}
+
+main {
+    margin: 1.25rem auto;
+}
+
+footer {
+    text-align: center;
+}
+
+footer a {
+    color: white;
+}

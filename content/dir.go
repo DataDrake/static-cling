@@ -14,12 +14,37 @@
 // limitations under the License.
 //
 
-package data
+package content
 
-// Meta contains all of the metadata for rendering a document
-type Meta struct {
-	Dir      bool
-	Path     string
-	Children []Meta
-	Data     map[string]string
+import (
+	"github.com/DataDrake/static-cling/file"
+)
+
+// Dir is a directory of the content Tree
+type Dir struct {
+	*file.Dir
+	Subs  map[string]*Dir
+	Pages Pages
+}
+
+// NewDir creates a new directory for the specified path
+func NewDir(path string) (d *Dir, err error) {
+	dir, err := file.NewDir(path)
+	if err != nil {
+		return
+	}
+	d = &Dir{
+		Dir: dir,
+	}
+	return
+}
+
+// Update rereads the underlying directory and updates the pages as needed
+func (d *Dir) Update(force bool) error {
+	if err := d.Read(); err != nil {
+		return err
+	}
+	// TODO update the Subs map
+	// TODO update the Pages list
+	return nil
 }

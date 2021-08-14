@@ -14,9 +14,21 @@
 // limitations under the License.
 //
 
-package config
+package content
 
-// Listings configures the rendering process for page listings
-type Listings struct {
-	Templates []string `yaml:"templates"`
+// Tree contains all of the content
+type Tree struct {
+	Root *Dir
+}
+
+// NewTree creates a new directory for the specified path
+func NewTree(path string) (t *Tree, err error) {
+	root, err := NewDir(path)
+	if err != nil {
+		return
+	}
+	t = &Tree{
+		Root: root,
+	}
+	return
 }
